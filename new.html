@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Marry Me?</title>
+  <style>
+body {
+    background-color: #f0f0f0;
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    overflow: hidden; /* Prevent scrollbars during animation */
+}
+
+.container {
+    text-align: center;
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #e91e63; /* Pink/Red */
+    margin-bottom: 20px;
+}
+
+.heart {
+    width: 100px;
+    height: 100px;
+    background-color: #e91e63;
+    margin: 0 auto 20px;
+    position: relative;
+    transform: rotate(-45deg);
+    animation: heartbeat 1.5s infinite; /* Heartbeat animation */
+}
+
+.heart::before,
+.heart::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    background-color: #e91e63;
+    width: 100px;
+    height: 100px;
+}
+
+.heart::before {
+    top: -50px;
+    left: 0;
+}
+
+.heart::after {
+    left: 50px;
+    top: 0;
+}
+
+@keyframes heartbeat {
+    0% { transform: rotate(-45deg) scale(1); }
+    50% { transform: rotate(-45deg) scale(1.1); }
+    100% { transform: rotate(-45deg) scale(1); }
+}
+
+.buttons button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#yesButton {
+    background-color: #4caf50; /* Green */
+    color: white;
+}
+
+#yesButton:hover {
+    background-color: #45a049;
+}
+
+#noButton {
+    background-color: #f44336; /* Red */
+    color: white;
+}
+
+#noButton:hover {
+    background-color: #da190b;
+}
+
+#response{
+    margin-top: 20px;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+  </style>
+</head>
+<body>
+    <div class="container">
+        <div class="heart"></div>
+        <h1>Will You Marry Me?</h1>
+        <div class="buttons">
+            <button id="yesButton">Yes</button>
+            <button id="noButton">No</button>
+        </div>
+        <p id="response"></p>
+    </div>
+    <script>
+      
+const yesButton = document.getElementById('yesButton');
+const noButton = document.getElementById('noButton');
+const response = document.getElementById('response');
+
+yesButton.addEventListener('click', () => {
+    response.textContent = "I knew you would! ❤️";
+    // Add confetti or other celebratory effects here if desired.
+    // Example (using a simple alert for now):
+    alert("Yay!");
+});
+
+noButton.addEventListener('mouseover', () => {
+    const maxX = window.innerWidth - noButton.offsetWidth;
+    const maxY = window.innerHeight - noButton.offsetHeight;
+
+    const randomX = Math.floor(Math.random() * maxX);
+    const randomY = Math.floor(Math.random() * maxY);
+
+    noButton.style.position = 'absolute';
+    noButton.style.left = randomX + 'px';
+    noButton.style.top = randomY + 'px';
+});
+
+noButton.addEventListener('click', () => {
+    response.textContent = "Please reconsider! 🥺";
+});
+    </script>
+</body>
+</html>
